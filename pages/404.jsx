@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import Router, { useRouter } from "next/router";
-const NotFound = () => {
+export default function NotFound() {
   const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
@@ -20,6 +20,4 @@ const NotFound = () => {
       </p>
     </div>
   );
-};
-
-export default NotFound;
+}

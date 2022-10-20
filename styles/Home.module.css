@@ -1,13 +1,8 @@
-.card {
-  padding: 5px;
-  margin: 10px 5px;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.cardBox {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: white;
 }

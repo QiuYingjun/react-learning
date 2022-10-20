@@ -1,14 +1,13 @@
-import styles from "../styles/Home.module.css";
+import { H1 } from "@blueprintjs/core";
 import Head from "next/head";
-const About = () => {
+export default function About() {
   return (
     <>
       <Head>
-        <title>Ninja List | About</title>
-        <meta name="keywords" content="ninjas"></meta>
+        <title>About</title>
       </Head>
       <div>
-        <h1 className={styles.title}>About</h1>
+        <H1>About</H1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum,
           suscipit libero? Aliquid corporis deserunt qui, consequatur molestiae
@@ -18,6 +17,4 @@ const About = () => {
       </div>
     </>
   );
-};
-
-export default About;
+}

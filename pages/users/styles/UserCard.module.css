@@ -1,0 +1,19 @@
+.card {
+  padding: 20px;
+  margin: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card button {
+  margin-top: 20px;
+}
+.icon {
+  margin: 5px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
