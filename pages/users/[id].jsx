@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-
+import Post from "./components/Post";
+import Album from "./components/Album";
+import styled from "styled-components";
 export const getStaticPaths = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
   var users = await res.json();
@@ -47,23 +49,50 @@ export default function Details({ user }) {
     }
     getData();
   }, []);
-  return (
-    <>
-      <div>
+  if (user) {
+    return (
+      <>
         <h1>{user.name}</h1>
         <p>{user.email}</p>
         <p>{user.website}</p>
-      </div>
-      <ol>
-        {posts.map((post) => (
-          <li>{post.title}</li>
-        ))}
-      </ol>
-      <ol>
-        {albums.map((album) => (
-          <li>{album.title}</li>
-        ))}
-      </ol>
-    </>
-  );
+        <WrapperContent>
+          <WrapperAlbums>
+            {albums.map((album) => (
+              <Album key={album.id} album={album} />
+            ))}
+          </WrapperAlbums>
+          <WrapperPosts>
+            {posts.map((post) => (
+              <Post post={post} />
+            ))}
+          </WrapperPosts>
+        </WrapperContent>
+      </>
+    );
+  } else {
+    return <></>;
+  }
 }
+const WrapperContent = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+`;
+const WrapperAlbums = styled.div`
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  position: absolute;
+  left: 0;
+  width: 70%;
+`;
+const WrapperPosts = styled.div`
+  padding: 10px;
+  height: 600px;
+  overflow-y: scroll;
+  position: absolute;
+  right: 0%;
+  width: 30%;
+`;

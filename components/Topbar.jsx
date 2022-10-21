@@ -24,7 +24,12 @@ export default function Topbar() {
         <Link href="/users">
           <Button className={Classes.MINIMAL} icon="user" text="Users" />
         </Link>
-        <Button className={Classes.MINIMAL} icon="media" text="Photos" />
+        <Link href="/posts">
+          <Button className={Classes.MINIMAL} icon="label" text="Posts" />
+        </Link>
+        <Link href="/albums">
+          <Button className={Classes.MINIMAL} icon="media" text="Albums" />
+        </Link>
         <Link href="/about">
           <Button className={Classes.MINIMAL} icon="info-sign" text="About" />
         </Link>

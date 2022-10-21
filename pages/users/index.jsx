@@ -1,17 +1,17 @@
 import Head from "next/head";
-import styles from "./styles/users.module.css";
 import UserCard from "./components/UserCard";
+import styled from "styled-components";
 export default function Home({ users }) {
   return (
     <>
       <Head>
         <title>Users</title>
       </Head>
-      <div className={styles.cardBox}>
+      <UsersWrapper>
         {users.map((user) => (
           <UserCard user={user} />
         ))}
-      </div>
+      </UsersWrapper>
     </>
   );
 }
@@ -22,3 +22,9 @@ export const getStaticProps = async () => {
     props: { users },
   };
 };
+
+const UsersWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+`;

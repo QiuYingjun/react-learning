@@ -5,7 +5,8 @@ export default function Layout({ children }) {
   return (
     <>
       <Topbar />
-      <div className="content">{children}</div>
+      {/* <div className="content">{children}</div> */}
+      <div>{children}</div>
       <Footer />
     </>
   );
