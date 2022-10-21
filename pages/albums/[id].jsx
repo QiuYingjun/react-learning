@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Photo from "./components/Photo";
 import styled from "styled-components";
+import Image from "next/image";
 export const getStaticPaths = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/albums");
   var albums = await res.json();
@@ -38,13 +39,24 @@ export default function AlbumDetails({ album }) {
       }
     }
     getPhotos();
-  }, []);
+  }, [album]);
+  let bigImage = <></>;
+  if (selectedPhoto.url) {
+    bigImage = (
+      <ImageWrapper>
+        <Image
+          src={selectedPhoto.url + ".png"}
+          alt={selectedPhoto.title}
+          width={600}
+          height={600}
+        />
+      </ImageWrapper>
+    );
+  }
 
   return (
     <>
-      <ImageWrapper>
-        <img src={selectedPhoto.url} />
-      </ImageWrapper>
+      {bigImage}
       <PhotoWrapper>
         {photos.map((photo) => (
           <Photo
@@ -70,6 +82,7 @@ const PhotoWrapper = styled.div`
   display: flex;
   overflow-x: scroll;
   position: absolute;
+  /* margin-bottom: 50px; */
   bottom: 50px;
   padding: 10px 0;
   background-color: white;

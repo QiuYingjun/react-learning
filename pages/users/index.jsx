@@ -9,7 +9,7 @@ export default function Home({ users }) {
       </Head>
       <UsersWrapper>
         {users.map((user) => (
-          <UserCard user={user} />
+          <UserCard key={user.id} user={user} />
         ))}
       </UsersWrapper>
     </>

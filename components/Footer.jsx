@@ -1,12 +1,20 @@
-import styles from "../styles/Home.module.css";
+import styled from "styled-components";
 import { Divider } from "@blueprintjs/core";
 export default function Footer() {
   return (
     <>
-      <footer className={styles.footer}>
+      <MyFooter>
         <Divider />
         <div>Copyright 2022</div>
-      </footer>
+      </MyFooter>
     </>
   );
 }
+const MyFooter = styled.footer`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: white;
+`;

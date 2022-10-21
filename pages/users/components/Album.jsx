@@ -2,6 +2,7 @@ import { Card, H5, Spinner } from "@blueprintjs/core";
 import Link from "next/link";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 export default function Album({ album }) {
   const [preview, setPreview] = useState(null);
   useEffect(() => {
@@ -18,17 +19,24 @@ export default function Album({ album }) {
       setPreview(pre);
     }
     getData();
-  }, []);
+  }, [album.id]);
 
   return (
     <Link href={"/albums/" + album.id}>
       <WrapperCard interactive={true}>
         {preview ? (
-          <img src={preview.thumbnailUrl} alt="vercel" />
+          <Image
+            src={preview.thumbnailUrl + ".png"}
+            alt={preview.title}
+            width={150}
+            height={150}
+          />
         ) : (
-          <Spinner size={50} />
+          <div className="spinner">
+            <Spinner size={50} />
+          </div>
         )}
-        <H5 className="h5">{album.title}</H5>
+        <H5>{album.title}</H5>
       </WrapperCard>
     </Link>
   );
@@ -43,5 +51,11 @@ const WrapperCard = styled(Card)`
   flex-direction: column;
   img {
     margin: 10px;
+  }
+  div.spinner {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
   }
 `;

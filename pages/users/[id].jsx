@@ -24,31 +24,24 @@ export const getStaticProps = async (context) => {
   };
 };
 
-export default function Details({ user }) {
-  const fetchPosts = async () => {
-    return fetch(
-      "https://jsonplaceholder.typicode.com/users/" + user.id + "/posts"
-    );
-  };
-  const fetchAlbums = async () => {
-    return fetch(
-      "https://jsonplaceholder.typicode.com/users/" + user.id + "/albums"
-    );
-  };
+export default function UserDetails({ user }) {
   const [posts, setPosts] = useState([]);
   const [albums, setAlbums] = useState([]);
   useEffect(() => {
     async function getData() {
-      const res1 = await fetchPosts();
+      const res1 = await fetch(
+        "https://jsonplaceholder.typicode.com/users/" + user.id + "/posts"
+      );
       const posts = await res1.json();
-      console.log(posts);
       setPosts(posts);
-      const res2 = await fetchAlbums();
+      const res2 = await fetch(
+        "https://jsonplaceholder.typicode.com/users/" + user.id + "/albums"
+      );
       const albums = await res2.json();
       setAlbums(albums);
     }
     getData();
-  }, []);
+  }, [setAlbums, setPosts, user.id]);
   if (user) {
     return (
       <>
@@ -63,7 +56,7 @@ export default function Details({ user }) {
           </WrapperAlbums>
           <WrapperPosts>
             {posts.map((post) => (
-              <Post post={post} />
+              <Post key={post.id} post={post} />
             ))}
           </WrapperPosts>
         </WrapperContent>
@@ -84,6 +77,7 @@ const WrapperAlbums = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
+  justify-content: space-between;
   position: absolute;
   left: 0;
   width: 70%;
@@ -95,4 +89,5 @@ const WrapperPosts = styled.div`
   position: absolute;
   right: 0%;
   width: 30%;
+  min-width: 200px;
 `;

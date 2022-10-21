@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { H1 } from "@blueprintjs/core";
-import styles from "../styles/Home.module.css";
-export default function Home({ users }) {
+export default function Home() {
   return (
     <>
       <Head>

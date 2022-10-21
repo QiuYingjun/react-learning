@@ -7,7 +7,7 @@ export default function NotFound() {
     setTimeout(() => {
       router.push("/");
     }, 3000);
-  }, []);
+  }, [router]);
   return (
     <div>
       <h1>Oooops....</h1>
