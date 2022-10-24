@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Post from "./components/Post";
 import Album from "./components/Album";
 import styled from "styled-components";
+import { Divider } from "@blueprintjs/core";
 export const getStaticPaths = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
   var users = await res.json();
@@ -72,7 +73,7 @@ const WrapperContent = styled.div`
   justify-content: space-between;
 `;
 const WrapperAlbums = styled.div`
-  padding: 10px;
+  padding: 0 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -83,11 +84,13 @@ const WrapperAlbums = styled.div`
   width: 70%;
 `;
 const WrapperPosts = styled.div`
-  padding: 10px;
+  padding: 0 10px;
   height: 600px;
   overflow-y: scroll;
   position: absolute;
-  right: 0%;
+  right: 10px;
   width: 30%;
   min-width: 200px;
+  border: solid gray 1px;
+  border-radius: 8px;
 `;
