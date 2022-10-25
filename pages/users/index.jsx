@@ -1,7 +1,7 @@
 import Head from "next/head";
 import UserCard from "./components/UserCard";
 import styled from "styled-components";
-export default function Home({ users }) {
+export default function UserHome({ users }) {
   return (
     <>
       <Head>

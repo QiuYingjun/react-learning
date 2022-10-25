@@ -22,7 +22,11 @@ export default function Comment({ comment }) {
         </Link>
       );
     } else {
-      return <b>anonymous {comment.email}</b>;
+      return (
+        <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+          {comment.email}
+        </div>
+      );
     }
   }
 

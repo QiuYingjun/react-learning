@@ -6,8 +6,11 @@ export default function Layout({ children }) {
   return (
     <>
       <Topbar />
-      <div>{children}</div>
+      <ContentDiv>{children}</ContentDiv>
       <Footer />
     </>
   );
 }
+const ContentDiv = styled.div`
+  margin: 10px;
+`;

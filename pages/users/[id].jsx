@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Post from "./components/Post";
-import Album from "./components/Album";
+import Album from "../../components/Album";
 import styled from "styled-components";
 import { Divider } from "@blueprintjs/core";
 export const getStaticPaths = async () => {
@@ -73,21 +73,21 @@ const WrapperContent = styled.div`
   justify-content: space-between;
 `;
 const WrapperAlbums = styled.div`
-  padding: 0 10px;
+  /* padding: 0 10px; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: space-between;
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   width: 70%;
 `;
 const WrapperPosts = styled.div`
-  padding: 0 10px;
-  height: 600px;
+  /* padding: 0 10px; */
+  height: 700px;
   overflow-y: scroll;
-  position: absolute;
+  /* position: absolute; */
   right: 10px;
   width: 30%;
   min-width: 200px;

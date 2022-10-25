@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Photo from "./components/Photo";
 import styled from "styled-components";
 import Image from "next/image";
+import { Card, H5, Spinner } from "@blueprintjs/core";
 export const getStaticPaths = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/albums");
   var albums = await res.json();
@@ -19,16 +20,22 @@ export const getStaticProps = async (context) => {
   const id = context.params.id;
   const res = await fetch("https://jsonplaceholder.typicode.com/albums/" + id);
   const album = await res.json();
+  const res2 = await fetch(
+    "https://jsonplaceholder.typicode.com/users/" + album.userId
+  );
+  const user = await res2.json();
   return {
-    props: { album },
+    props: { album, user },
   };
 };
 
-export default function AlbumDetails({ album }) {
+export default function AlbumDetails({ album, user }) {
   const [photos, setPhotos] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState({});
+  const [bigImage, setBigImage] = useState(<Spinner />);
   useEffect(() => {
     async function getPhotos() {
+      setBigImage(<Spinner />);
       if (album) {
         const res = await fetch(
           "https://jsonplaceholder.typicode.com/photos?albumId=" + album.id
@@ -40,23 +47,26 @@ export default function AlbumDetails({ album }) {
     }
     getPhotos();
   }, [album]);
-  let bigImage = <></>;
-  if (selectedPhoto.url) {
-    bigImage = (
-      <ImageWrapper>
+  useEffect(() => {
+    if (selectedPhoto.url) {
+      setBigImage(
         <Image
           src={selectedPhoto.url + ".png"}
           alt={selectedPhoto.title}
           width={600}
           height={600}
         />
-      </ImageWrapper>
-    );
-  }
+      );
+    }
+  }, [selectedPhoto]);
 
   return (
     <>
-      {bigImage}
+      <Card>
+        <H5>{user.name}</H5>
+        <p>{user.email}</p>
+      </Card>
+      <BigImageWrapper>{bigImage}</BigImageWrapper>
       <PhotoWrapper>
         {photos.map((photo) => (
           <Photo
@@ -72,7 +82,7 @@ export default function AlbumDetails({ album }) {
     </>
   );
 }
-const ImageWrapper = styled.div`
+const BigImageWrapper = styled.div`
   text-align: center;
   margin: 20px;
 `;
@@ -81,9 +91,9 @@ const PhotoWrapper = styled.div`
   float: bottom;
   display: flex;
   overflow-x: scroll;
-  position: absolute;
+  /* position: absolute; */
   /* margin-bottom: 50px; */
-  bottom: 50px;
+  /* bottom: 50px; */
   padding: 10px 0;
   background-color: white;
 `;

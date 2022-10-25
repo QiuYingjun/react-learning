@@ -31,7 +31,7 @@ export default function UserCard({ user }) {
 }
 const MyCard = styled(Card)`
   padding: 15px;
-  margin: 20px;
+  margin: 10px;
   width: 250px;
   display: flex;
   flex-direction: column;

@@ -11,10 +11,7 @@ export default function Footer() {
   );
 }
 const MyFooter = styled.footer`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  float: bottom;
   height: 50px;
   background-color: white;
 `;
