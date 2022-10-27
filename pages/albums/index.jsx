@@ -1,5 +1,6 @@
 import Album from "../../components/Album";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 function shuffle(array) {
   let currentIndex = array.length,
     randomIndex;
@@ -28,9 +29,23 @@ export const getStaticProps = async () => {
 };
 
 export default function AlbumHome({ albums }) {
+  const [columns, setColumns] = useState(8);
+  useEffect(() => {
+    function handleResize() {
+      for (var i = 1; i < 10; i++) {
+        if (window.innerWidth < i * 220) {
+          setColumns(i - 1);
+          console.log(i - 1);
+          break;
+        }
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {};
+  });
   return (
     <>
-      <WrapperAlbums>
+      <WrapperAlbums style={{ columns }}>
         {albums.map((album) => (
           <Album key={album.id} album={album} />
         ))}
@@ -39,11 +54,6 @@ export default function AlbumHome({ albums }) {
   );
 }
 const WrapperAlbums = styled.div`
-  display: flex;
-  margin-top: 20px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: space-between;
-  float: top;
+  columns: 8;
+  column-gap: 10px; // 列间距
 `;

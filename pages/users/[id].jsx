@@ -43,6 +43,22 @@ export default function UserDetails({ user }) {
     }
     getData();
   }, [setAlbums, setPosts, user.id]);
+  const [columns, setColumns] = useState(
+    Math.floor((window.innerWidth * 0.7) / 210)
+  );
+  useEffect(() => {
+    function handleResize() {
+      for (var i = 1; i < 10; i++) {
+        if (window.innerWidth * 0.7 < i * 210) {
+          setColumns(i - 1);
+          console.log(i - 1);
+          break;
+        }
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {};
+  });
   if (user) {
     return (
       <>
@@ -50,7 +66,7 @@ export default function UserDetails({ user }) {
         <p>{user.email}</p>
         <p>{user.website}</p>
         <WrapperContent>
-          <WrapperAlbums>
+          <WrapperAlbums style={{ columns }}>
             {albums.map((album) => (
               <Album key={album.id} album={album} />
             ))}
@@ -74,13 +90,14 @@ const WrapperContent = styled.div`
 `;
 const WrapperAlbums = styled.div`
   /* padding: 0 10px; */
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
-  justify-content: space-between;
+  justify-content: space-between; */
   /* position: absolute; */
-  left: 0;
+  /* left: 0; */
+  columns: 6; // 默认列数
   width: 70%;
 `;
 const WrapperPosts = styled.div`
