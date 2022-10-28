@@ -20,11 +20,11 @@ export default function Photo({ photo, parentClick, selected }) {
 }
 const PhotoWrapper = styled(Card)`
   margin: 0 5px;
-  padding: 5px;
-  border: solid white 3px;
+  padding: 4px 4px 0px 4px;
+  border: solid white 1px;
 `;
 const SelectedPhotoWrapper = styled(Card)`
   margin: 0 5px;
-  padding: 5px;
-  border: solid red 3px;
+  padding: 4px 4px 0px 4px;
+  border: solid red 1px;
 `;

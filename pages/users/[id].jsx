@@ -43,21 +43,22 @@ export default function UserDetails({ user }) {
     }
     getData();
   }, [setAlbums, setPosts, user.id]);
-  const [columns, setColumns] = useState(
-    Math.floor((window.innerWidth * 0.7) / 210)
-  );
+  const [columns, setColumns] = useState(1);
   useEffect(() => {
     function handleResize() {
       for (var i = 1; i < 10; i++) {
-        if (window.innerWidth * 0.7 < i * 210) {
+        if (window.innerWidth * 0.7 < i * 210 + 50) {
           setColumns(i - 1);
           console.log(i - 1);
           break;
         }
       }
     }
+    handleResize();
     window.addEventListener("resize", handleResize);
-    return () => {};
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   });
   if (user) {
     return (
@@ -108,6 +109,6 @@ const WrapperPosts = styled.div`
   right: 10px;
   width: 30%;
   min-width: 200px;
-  border: solid gray 1px;
-  border-radius: 8px;
+  border: solid #ccc 1px;
+  border-radius: 2px;
 `;

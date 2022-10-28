@@ -1,13 +1,10 @@
 body {
   background-color: aliceblue;
-} 
-.content {
-  margin: 10px;
 }
 
-.nav a{
+/* .nav a{
   margin: 10px;
-} 
+}  */
 .layout {
   display: flex;
   flex-direction: column;

@@ -66,7 +66,6 @@ export default function AlbumDetails({ album, user }) {
         <H5>{user.name}</H5>
         <p>{user.email}</p>
       </Card>
-      <BigImageWrapper>{bigImage}</BigImageWrapper>
       <PhotoWrapper>
         {photos.map((photo) => (
           <Photo
@@ -79,6 +78,7 @@ export default function AlbumDetails({ album, user }) {
           />
         ))}
       </PhotoWrapper>
+      <BigImageWrapper>{bigImage}</BigImageWrapper>
     </>
   );
 }
@@ -88,12 +88,10 @@ const BigImageWrapper = styled.div`
 `;
 const PhotoWrapper = styled.div`
   width: 100%;
-  float: bottom;
+  float: top;
   display: flex;
   overflow-x: scroll;
-  /* position: absolute; */
-  /* margin-bottom: 50px; */
-  /* bottom: 50px; */
-  padding: 10px 0;
+  margin-top: 10px;
+  padding: 10px 0 20px 0;
   background-color: white;
 `;

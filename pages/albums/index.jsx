@@ -40,8 +40,11 @@ export default function AlbumHome({ albums }) {
         }
       }
     }
+    handleResize();
     window.addEventListener("resize", handleResize);
-    return () => {};
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   });
   return (
     <>
