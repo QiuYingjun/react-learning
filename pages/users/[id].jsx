@@ -30,19 +30,21 @@ export default function UserDetails({ user }) {
   const [albums, setAlbums] = useState([]);
   useEffect(() => {
     async function getData() {
-      const res1 = await fetch(
-        "https://jsonplaceholder.typicode.com/users/" + user.id + "/posts"
-      );
-      const posts = await res1.json();
-      setPosts(posts);
-      const res2 = await fetch(
-        "https://jsonplaceholder.typicode.com/users/" + user.id + "/albums"
-      );
-      const albums = await res2.json();
-      setAlbums(albums);
+      if (user) {
+        const res1 = await fetch(
+          "https://jsonplaceholder.typicode.com/users/" + user.id + "/posts"
+        );
+        const posts = await res1.json();
+        setPosts(posts);
+        const res2 = await fetch(
+          "https://jsonplaceholder.typicode.com/users/" + user.id + "/albums"
+        );
+        const albums = await res2.json();
+        setAlbums(albums);
+      }
     }
     getData();
-  }, [setAlbums, setPosts, user.id]);
+  }, [setAlbums, setPosts, user]);
   const [columns, setColumns] = useState(1);
   useEffect(() => {
     function handleResize() {

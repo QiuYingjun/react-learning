@@ -9,14 +9,16 @@ export default function Post({ post }) {
   const [commentDiv, setCommentDiv] = useState(<></>);
   useEffect(() => {
     async function fetchData() {
-      const res1 = await fetch(
-        "https://jsonplaceholder.typicode.com/users/" + post.userId
-      );
-      const user_ = await res1.json();
-      setUser(user_);
+      if (post) {
+        const res1 = await fetch(
+          "https://jsonplaceholder.typicode.com/users/" + post.userId
+        );
+        const user_ = await res1.json();
+        setUser(user_);
+      }
     }
     fetchData();
-  }, [post.id, post.userId]);
+  }, [post]);
 
   useEffect(() => {
     async function getComments() {

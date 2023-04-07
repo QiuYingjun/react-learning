@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 export default function Album({ album }) {
-  const [preview, setPreview] = useState(null);
+  const [preview, setPreview] = useState({});
   const [user, setUser] = useState({});
   useEffect(() => {
     async function getData() {
@@ -33,7 +33,7 @@ export default function Album({ album }) {
         <H5>{album.title}</H5>
         <Link href={"/albums/" + album.id}>
           <div className="spinner">
-            {preview ? (
+            {preview.thumbnailUrl ? (
               <Image
                 src={preview.thumbnailUrl + ".png"}
                 alt={preview.title}

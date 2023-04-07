@@ -3,14 +3,20 @@ import Link from "next/link";
 import styled from "styled-components";
 export default function Post({ post }) {
   return (
-    <Wrapper>
-      <Link href={"/posts/" + post.id}>
-        <Card interactive={true}>
-          <H5>{post.title}</H5>
-          <span>{post.body}</span>
-        </Card>
-      </Link>
-    </Wrapper>
+    <>
+      {post ? (
+        <></>
+      ) : (
+        <Wrapper>
+          <Link href={"/posts/" + post.id}>
+            <Card interactive={true}>
+              <H5>{post.title}</H5>
+              <span>{post.body}</span>
+            </Card>
+          </Link>
+        </Wrapper>
+      )}
+    </>
   );
 }
 

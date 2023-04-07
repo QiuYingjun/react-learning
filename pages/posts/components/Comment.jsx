@@ -6,14 +6,16 @@ export default function Comment({ comment }) {
   const [user, setUser] = useState({});
   useEffect(() => {
     async function fetchUser() {
-      const res = await fetch(
-        "https://jsonplaceholder.typicode.com/users?email=" + comment.email
-      );
-      const user_ = await res.json();
-      setUser(user_[0]);
+      if (comment) {
+        const res = await fetch(
+          "https://jsonplaceholder.typicode.com/users?email=" + comment.email
+        );
+        const user_ = await res.json();
+        setUser(user_[0]);
+      }
     }
     fetchUser();
-  }, [comment.email]);
+  }, [comment]);
   function getUserLine() {
     if (user && user.id) {
       return (
